@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 const Blog = ({ blog, updateBlog, deleteBlog }) => {
   const [details, setDetails] = useState(false)
 
@@ -48,7 +49,7 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
 
   return (
   <div style={blogStyle}>
-    {blog.title} {blog.author} <button onClick={viewOnClick}>{details ? "hide" : "view"}</button>
+    <span id="title">{blog.title}</span> <span id="author">{blog.author}</span> <button onClick={viewOnClick}>{details ? "hide" : "view"}</button>
 
     {
       details ? detailsView() : false 

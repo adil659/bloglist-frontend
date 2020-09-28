@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const LoginForm = ({username, setUsername, password, setPassword, handleLogin}) => {
+const LoginForm = ({ username, setUsername, password, setPassword, handleLogin }) => {
 
-    return (
+  return (
     <form onSubmit={handleLogin}>
       <div>
         username
             <input
+          id="username_input"
           type="text"
           value={username}
           name="Username"
@@ -17,15 +18,16 @@ const LoginForm = ({username, setUsername, password, setPassword, handleLogin}) 
       <div>
         password
             <input
+          id="password_input"
           type="password"
           value={password}
           name="Password"
           onChange={({ target }) => setPassword(target.value)}
         />
       </div>
-      <button type="submit">login</button>
+      <button id="login_button" type="submit">login</button>
     </form>
-    )
+  )
 }
 
 LoginForm.propTypes = {

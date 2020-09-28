@@ -41,6 +41,7 @@ const App = () => {
       const user = await loginService.login({
         username, password,
       })
+      console.log("userr", user)
 
 
       window.localStorage.setItem(
@@ -145,26 +146,27 @@ const App = () => {
     }
   }
 
+
   return (
     <div>
 
       <Notification message={errorMessage} />
 
       {user === null ?
-        <Togglable buttonLabel="login">
+        <Togglable buttonLabel="login" toggle={true}>
           <LoginForm username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />
         </Togglable>
         :
         <div>
           <p>{user.name} logged-in</p>
           <button onClick={logout}>logout </button>
-          <Togglable buttonLabel="new blog" ref={blogFormRef}>
+          <Togglable buttonLabel="new blog" ref={blogFormRef} toggle={true}>
             <BlogForm createBlog={addBlog} />
           </Togglable>
         </div>
       }
 
-      <h2>blogs</h2>
+      <h2 id="all-blogs">blogs</h2>
       {(blogs.sort((a,b) => b.likes - a.likes)).map(blog =>
         <Blog key={blog.id} blog={blog} updateBlog={updateBlog} deleteBlog={deleteBlog}/>
       )}

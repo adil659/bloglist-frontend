@@ -21,8 +21,6 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
 
     updateBlog(blogId, newBlogObject)
 
-
-
   }
 
   const deleteBlogOnChange = (event) => {
@@ -38,7 +36,7 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
       
       {blog.url}
       <br></br>
-      {blog.likes} <button value={blog.id} onClick={likeOnChange}>like</button>
+      <span id="likes">{blog.likes}</span> <button value={blog.id} onClick={likeOnChange}>like</button>
       <br></br>
       {blog.author}
       <br></br>
@@ -48,7 +46,7 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
   )
 
   return (
-  <div style={blogStyle}>
+  <div class="blog" style={blogStyle}>
     <span id="title">{blog.title}</span> <span id="author">{blog.author}</span> <button onClick={viewOnClick}>{details ? "hide" : "view"}</button>
 
     {

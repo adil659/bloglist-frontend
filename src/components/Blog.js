@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import {
+   Link
+} from "react-router-dom"
 
 const Blog = ({ blog, updateBlog, deleteBlog }) => {
   const [details, setDetails] = useState(false)
 
   const blogStyle = {
     border: '1px solid',
+    padding: `20px 40px`,
+    backgroundColor: 'aliceblue'
   }
 
   const likeOnChange = (event) => {
@@ -45,10 +50,12 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
     </div>
   )
 
-  return (
-  <div class="blog" style={blogStyle}>
-    <span id="title">{blog.title}</span> <span id="author">{blog.author}</span> <button onClick={viewOnClick}>{details ? "hide" : "view"}</button>
 
+  return (
+  <div className="blog" style={blogStyle}>
+    <Link to={`/blogs/${blog.id}`}>
+    <span id="title">{blog.title}</span> <span id="author">{blog.author}</span> 
+    </Link>
     {
       details ? detailsView() : false 
     }

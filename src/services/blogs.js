@@ -25,15 +25,31 @@ const create = async newObject => {
   return response.data
 }
 
-const update = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject)
-  return request.then(response => response.data)
+const update = async (id, newObject) => {
+  console.log("before GIVEM EM UPDATE: ", newObject)
+  
+  const response = await axios.put(`${baseUrl}/${id}`, newObject)
+  console.log("GIVE ME THE UPDATE: ", response.data)
+  return response.data
 }
 
 const deleteBlog = (id) => {
-  const request = axios.put(`${baseUrl}/${id}`)
+  const config = {
+    headers: { Authorization: token },
+  }
+  const request = axios.delete(`${baseUrl}/${id}`, config)
+  return request.then(response => response.data)
+}
+
+const addComment = (blogId, commentObject) => {
+  console.log("reached addComment request")
+  const newObject = {
+    commentObject,
+    blogId
+  }
+  const request = axios.post(`${baseUrl}/${blogId}/comments`, newObject)
   return request.then(response => response.data)
 }
 
 
-export default { getAll, create, update, setToken, deleteBlog }
+export default { getAll, create, update, setToken, deleteBlog, addComment }
